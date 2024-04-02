@@ -17,6 +17,8 @@
     --fontsize-16: 1.6rem;
     --fontsize-20: 2rem;
     --fontsize-24: 2.4rem;
+
+    --data-bgcolor: #111;
 }
 
 * {
