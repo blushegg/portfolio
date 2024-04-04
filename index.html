@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>서 아 란 | Portfolio</title>
-    <!--  https://blushegg.github.io/portfolio/ -->
+    <!--  ❤️서아란 깃허브 주소 https://blushegg.github.io/portfolio/ -->
 
-    <link rel="icon" href="img/favicon_a.png" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="img/favicon_a.png" />
     <script src="js/jquery-3.7.1.min.js"></script>
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -15,6 +15,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <!-- lenis -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
+    <!-- fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/c11882ed90.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script>
       window.onload = () => {
@@ -35,7 +40,8 @@
           text.innerHTML = newText;
           text.setAttribute("aria-label", theText);
         });
-        //span 텍스트 효과
+
+        //텍스트 효과
         gsap.from(".split span", {
           yPercent: 100,
           autoAlpha: 0,
@@ -49,14 +55,14 @@
           },
         });
 
-        //progress 진행비
+        //진행바
         gsap.to("progress", {
           value: 100,
           ease: "none",
           scrollTrigger: { scrub: 0.3 },
         });
 
-        //skill 아이콘 설명
+        //아이콘 설명
         const showNav = gsap
           .from(".header_info", {
             yPercent: -200,
@@ -91,26 +97,69 @@
         let sections = gsap.utils.toArray(".design_item");
 
         gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-        trigger: ".design_inner",
-        start: "top 50px",
-        end: "+=7000",//7000만큼 스크롤 되면 애니메이션 종료
-        pin: true,
-        scrub: 1,
-        markers: false,
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
-      }
-      });
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".design_inner",
+            start: "top 50px",
+            end: "+=7000", //7000만큼 스크롤 되면 애니메이션 종료
+            pin: true,
+            scrub: 1,
+            markers: false,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          },
+        });
+
+        $(document).ready(function () {
+          // up_button 설정
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+              $(".up_button").fadeIn();
+            } else {
+              $(".up_button").fadeOut();
+            }
+          });
+
+          $(".up_button").click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 800);
+            return false;
+          });
+        });
+
+        $(function () {
+          $(".count").each(function () {
+            $(this)
+              .prop("Counter", 0)
+              .animate(
+                {
+                  Counter: $(this).text(),
+                },
+                {
+                  duration: 2000,
+                  //계단함수
+                  step: function (now) {
+                    //정수로 올림 하기
+                    $(this).text(Math.ceil(now));
+                  },
+                }
+              );
+          });
+          //로딩화면 페이드아웃
+          setTimeout(removeLoader, 3000);
+        });
+        function removeLoader() {
+          $("#loading").slideUp(800);
+          $(".count").fadeOut(800);
+        }
       };
     </script>
   </head>
   <body>
     <div id="wrap">
       <div id="loading" aria-label="로딩창">
-        <div class="text"></div>
+        <span class="count">100</span>
+        <span>%</span>
       </div>
       <!-- //loading -->
 
@@ -122,12 +171,12 @@
       <header id="header" role="header">
         <div class="header_inner inner">
           <h1 class="header_logo">
-            <a href="#" data-hover="서아란"><span>서아란</span></a>
+            <a href="#intro" data-hover="서아란"><span>서아란</span></a>
           </h1>
           <nav class="nav_pc" role="navigation" aria-label="메뉴_PC">
             <ul>
               <li>
-                <a href="#About" data-hover="소개"><span>About</span></a>
+                <a href="#skill" data-hover="소개"><span>About</span></a>
               </li>
               <li>
                 <a href="#Developer" data-hover="개발"
@@ -154,12 +203,14 @@
         <!-- //header_inner -->
 
         <div class="header_info">
-          <p class="header_text">
-            "볼 수 있는 만큼 그릴 수 있다" <br />
-            디자이너 + 개발자 서아란 입니다.<br />
-            디자인에 기반을 둔 다채롭고 효과적인<br />
-            개발 방법을 탐구합니다.
-          </p>
+          <div class="header_text">
+            <p>"볼 수 있는 만큼 그릴 수 있다"</p>
+            <p>디자이너 + 개발자 서아란 입니다.</p>
+            <p>우리가 살아가는 현실에서</p>
+            <p>디자인과 개발의 역할은 무엇인지 생각합니다.</p>
+            <p>디자인에 기반을 둔 다채롭고 효과적인</p>
+            <p>개발 방법을 탐구합니다.</p>
+          </div>
           <!-- //header_text -->
 
           <div class="call_box">
@@ -179,11 +230,18 @@
 
           <div class="link_box">
             <div class="git">
-              <a href="#" data-hover="깃허브"><span>Github</span></a>
+              <a
+                href="https://github.com/blushegg"
+                target="_blank"
+                data-hover="깃허브"
+                ><span>Github</span></a
+              >
             </div>
             <!-- //git -->
             <div class="resume">
-              <a href="#" data-hover="이력서"><span>Resume</span></a>
+              <a href="#" target="_blank" data-hover="이력서"
+                ><span>Resume</span></a
+              >
             </div>
             <!-- //resume -->
           </div>
@@ -273,7 +331,7 @@
               <!-- //left -->
 
               <div class="center">
-                <h2 class="center_text split">서아란</h2>
+                <h2 class="center_text split">서아란.</h2>
                 <h2 class="center_text split">포트폴리오</h2>
                 <figure class="large_img">
                   <img src="img/bg_potfolio.jpg" alt="포트폴리오배경" />
@@ -308,7 +366,7 @@
           <!-- //intro_inner -->
         </section>
         <!-- //intro -->
-        <section class="skill">
+        <section id="skill">
           <div class="skill_inner inner">
             <h2 class="title">About</h2>
             <div class="skill_cont">
@@ -330,15 +388,6 @@
                   <img src="img/java.svg" alt="javacsript" />
                   <img src="img/jquery.svg" alt="jquery" />
                   <img src="img/react.svg" alt="react" />
-                  <div class="developer_text">
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                  </div>
-                  <!-- //developer_text -->
                 </div>
                 <!-- //icon_developer -->
 
@@ -346,12 +395,6 @@
                   <img src="img/ai.svg" alt="illustrator" />
                   <img src="img/ps.svg" alt="photoahop" />
                   <img src="img/figma.svg" alt="figma" />
-                  <div class="design_text">
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                    <p>html5를 사용한 구현이 가능합니다</p>
-                  </div>
-                  <!-- //design_text -->
                 </div>
                 <!-- //icon_design -->
               </div>
@@ -425,7 +468,47 @@
               <!-- //about_year -->
               <div class="about_year">
                 <h3>오늘의 일기장</h3>
-                <p></p>
+                <p>
+                  처음＂hello world!＂를 입력할 때 "코딩...어쩌면 쉬울수도?"
+                  라는 안일한 생각을 했다(┬┬﹏┬┬)
+                </p>
+                <p>
+                  그냥 한 문장을 입력해 봤을 뿐인데 내가 쓴 글이 튀어나오니 마냥
+                  재밌었나보다..ㅎㅎ
+                </p>
+                <p>
+                  학원 수업을 마무리하면서 생긴 고민은 다양한 언어와
+                  프로그램들을 빨리 배울 수 있을까?
+                </p>
+                <p>
+                  그리고 흥미를 잃지 않고 계속 공부할 수 있을까? 라는 고민과
+                  불안함이 생기는 시점인 것 같다.
+                </p>
+                <p>그래서 생각한 해결책으로 두가지가 있다.</p>
+                <p>
+                  첫째, 나에게 재미있는 언어를 찾아서 꾸준히 학습할 수 있도록
+                  하는 것.
+                </p>
+                <p>
+                  둘째, 성장을 좋아하고 새로운 경험을 찾는 성향이 항상 배워야
+                  하는 개발자라는 직업과 잘 맞지 않을까? 라는 확신이 있다.
+                </p>
+                <p>
+                  주니어 개발자로 취업을 준비하면서 아직 부족한 점이 많지만,
+                </p>
+                <p>
+                  새로운 도전에 대해 두려움을 느끼지 않는 이유는 시간과 노력을
+                  들이면 어떤 일이든 해낼 수 있다고 믿기 때문이고,
+                </p>
+                <p>
+                  어떤 상황에서든 항상 나의 방식으로 습득하고 결국 해냈기
+                  때문이다.
+                </p>
+                <p>
+                  결국, 이 경험의 과정이 어려웠지만 재미있었기 때문에 잘 해낼 수
+                  있다 라는 확신이 들고,
+                </p>
+                <p>미래의 나는 어떤 개발자로 성장했을 지 궁금해지는 날이다.</p>
                 <span>2024</span>
               </div>
               <!-- //about_year -->
@@ -439,7 +522,13 @@
           <div class="developer_inner inner">
             <div class="developer_wrap">
               <article class="developer_item s1">
-                <div class="mockup"></div>
+                <div class="mockup">
+                  <figure>
+                    <a href="https://blushegg.github.io/Teket/">
+                      <img src="img/teket_pc.png" alt="">
+                    </a>
+                  </figure>
+                </div>
                 <!-- //mockup -->
                 <div class="item_box">
                   <h3>Teket</h3>
@@ -461,7 +550,9 @@
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"><span>progress</span></a>
+                      <a href="#" data-hover="작업과정"
+                        ><span>progress</span></a
+                      >
                     </div>
                     <div class="Website">
                       <a href="#" data-hover="바로가기"><span>Website</span></a>
@@ -495,7 +586,9 @@
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"><span>progress</span></a>
+                      <a href="#" data-hover="작업과정"
+                        ><span>progress</span></a
+                      >
                     </div>
                     <div class="Website">
                       <a href="#" data-hover="바로가기"><span>Website</span></a>
@@ -529,7 +622,9 @@
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"><span>progress</span></a>
+                      <a href="#" data-hover="작업과정"
+                        ><span>progress</span></a
+                      >
                     </div>
                     <div class="Website">
                       <a href="#" data-hover="바로가기"><span>Website</span></a>
@@ -563,7 +658,9 @@
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"><span>progress</span></a>
+                      <a href="#" data-hover="작업과정"
+                        ><span>progress</span></a
+                      >
                     </div>
                     <div class="Website">
                       <a href="#" data-hover="바로가기"><span>Website</span></a>
@@ -574,8 +671,9 @@
                 <!-- //item_box -->
               </article>
               <!-- //developer_item -->
-
+            </div>
           </div>
+          <!-- //developer_inner -->
           <!-- //developer -->
         </section>
         <!-- //developer -->
@@ -586,96 +684,118 @@
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
               <article class="design_item d2">
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
               <article class="design_item d3">
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
               <article class="design_item d4">
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
               <article class="design_item d5">
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
               <article class="design_item d6">
                 <div class="design_title">
                   <a href="#">흘러가는이미지</a>
                   <p>100%</p>
-                </div><!-- //design_title -->
+                </div>
+                <!-- //design_title -->
                 <figure class="design_box">
                   <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고">
+                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
                   </a>
-                </figure><!-- //design_box -->
-              </article><!-- //design_item -->
-
-            </div><!-- //design_wrap -->
-          </div><!-- //design_inner -->
-
+                </figure>
+                <!-- //design_box -->
+              </article>
+              <!-- //design_item -->
+            </div>
+            <!-- //design_wrap -->
+          </div>
+          <!-- //design_inner -->
         </section>
         <!-- //design -->
         <section id="contact">
           <div class="contact_inner inner">
             <div class="contact_box">
-              <h1 class="contact_title">
-                contact
-              </h1><!-- //contact_title -->
+              <h1 class="contact_title">Contact</h1>
+              <!-- //contact_title -->
               <div class="contact_text">
                 <div class="time">
                   <span>Contact time</span>
                   <p>10:00 - 20:00</p>
-                </div><!-- //time -->
+                </div>
+                <!-- //time -->
                 <div class="kakao">
                   <span>kakao ID</span>
                   <p>blushegg95</p>
-                </div><!-- //kakao -->
-
-              </div><!-- //contact_text -->
+                </div>
+                <!-- //kakao -->
+              </div>
+              <!-- //contact_text -->
               <figure class="kakao_code">
-                 <img src="img/kakao_code.png" alt="서아란 카카오톡 코드">
-              </figure><!-- //kakao_code -->
-            </div><!--//contact_box -->
-          </div><!-- //contact_inner -->
+                <img src="img/kakao_code.png" alt="서아란 카카오톡 코드" />
+              </figure>
+              <!-- //kakao_code -->
+            </div>
+            <!--//contact_box -->
+          </div>
+          <!-- //contact_inner -->
         </section>
         <!-- //contact -->
       </main>
@@ -683,15 +803,21 @@
 
       <footer id="footer" role="footer">
         <div class="footer_inner inner">
-        <ul>
-          <li>©2024 seoahran All rights reserved.</li>
-          <li>본 사이트는 상업적 목적이 아닌 개인 포트폴리오 사이트로 제작되었습니다.</li>
-        </ul>
-        <button class="up_button">up</button>
-      </div><!-- //footer_inner -->
+          <ul>
+            <li>©2024 seoahran All rights reserved.</li>
+            <li>
+              본 사이트는 상업적 목적이 아닌 개인 포트폴리오 사이트로
+              제작되었습니다.
+            </li>
+          </ul>
+          <button class="up_button">
+            <i class="fa-solid fa-angles-up" style="color: #e9e9e9"></i>
+          </button>
+        </div>
+        <!-- //footer_inner -->
       </footer>
       <!-- //footer -->
     </div>
-    <!-- //wrap -->
+    <!-- //wrap end -->
   </body>
 </html>
