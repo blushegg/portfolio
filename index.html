@@ -2,7 +2,6 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>서 아 란 | Portfolio</title>
     <!--  ❤️서아란 깃허브 주소 https://blushegg.github.io/portfolio/ -->
 
@@ -152,10 +151,36 @@
           $("#loading").slideUp(800);
           $(".count").fadeOut(800);
         }
+        //마우스 커서
+        const circle = document.querySelector('.cursor_circle');
+        console.log(circle)
+        let mouseX
+        let mouseY
+        window.addEventListener('mousemove', function(e){
+            mouseX = e.clientX
+            mouseY = e.clientY
+            circle.style.left = mouseX+'px'
+            circle.style.top = mouseY+'px'
+        });
+
+        $('.mockup figure').mouseover(function(){
+          $('.cursor_circle ').stop().show(200);
+        });
+        $('.mockup figure').mouseout(function(){
+          $('.cursor_circle ').stop().hide(200);
+        });
+
       };
     </script>
   </head>
   <body>
+    
+    <div id="cursor">
+      <div class="cursor_circle">
+        <p>view</p>
+      </div>
+    </div><!-- //cursor -->
+
     <div id="wrap">
       <div id="loading" aria-label="로딩창">
         <span class="count">100</span>
@@ -509,7 +534,6 @@
                   있다 라는 확신이 들고,
                 </p>
                 <p>미래의 나는 어떤 개발자로 성장했을 지 궁금해지는 날이다.</p>
-                <span>2024</span>
               </div>
               <!-- //about_year -->
             </div>
@@ -524,7 +548,7 @@
               <article class="developer_item s1">
                 <div class="mockup">
                   <figure>
-                    <a href="https://blushegg.github.io/Teket/">
+                    <a href="https://blushegg.github.io/Teket/" a target="_blank">
                       <img src="img/teket_pc.png" alt="">
                     </a>
                   </figure>
@@ -532,30 +556,23 @@
                 <!-- //mockup -->
                 <div class="item_box">
                   <h3>Teket</h3>
-                  <span>Teket 홈페이지 리뉴얼</span>
+                  <span>Teket 반응형 홈페이지 리뉴얼</span>
                   <p>
-                    자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
-                  </p>
-                  <p>
-                    작은 쇼핑몰에서 부산을 대표하는 큰 쇼핑몰로 성장하는
-                    과정에서 힘들지만
-                  </p>
-                  <p>
-                    팀원들과 함께 노력하고 열정을 쏟았던 순간이 가장 기억에 남고
-                    행복했습니다
+                    아메리칸 무드를 나타낼 수 있는 빈티지하고 레트로한 콘셉트로 디자인.
                   </p>
                   <div>
-                    <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
+                    <p><em>Developer</em> = 100%</p>
+                    <p><em>Tool</em> : HTML CSS JS </p>
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"
+                      <a href="/pdf/Teket_homepage.pdf" target="_blank" data-hover="작업과정"
                         ><span>progress</span></a
                       >
                     </div>
                     <div class="Website">
-                      <a href="#" data-hover="바로가기"><span>Website</span></a>
+                      <a href="https://blushegg.github.io/Teket/" target="_blank" data-hover="바로가기"><span>Website</span></a>
                     </div>
                   </div>
                   <!-- button -->
@@ -572,17 +589,10 @@
                   <p>
                     자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
                   </p>
-                  <p>
-                    작은 쇼핑몰에서 부산을 대표하는 큰 쇼핑몰로 성장하는
-                    과정에서 힘들지만
-                  </p>
-                  <p>
-                    팀원들과 함께 노력하고 열정을 쏟았던 순간이 가장 기억에 남고
-                    행복했습니다
-                  </p>
                   <div>
                     <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
+                    <p><em>Tool</em> : HTML CSS JS </p>
                   </div>
                   <div class="button">
                     <div class="progress">
@@ -608,23 +618,14 @@
                   <p>
                     자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
                   </p>
-                  <p>
-                    작은 쇼핑몰에서 부산을 대표하는 큰 쇼핑몰로 성장하는
-                    과정에서 힘들지만
-                  </p>
-                  <p>
-                    팀원들과 함께 노력하고 열정을 쏟았던 순간이 가장 기억에 남고
-                    행복했습니다
-                  </p>
                   <div>
                     <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
+                    <p><em>Tool</em> : HTML CSS JS </p>
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"
-                        ><span>progress</span></a
-                      >
+                      <a href="#" data-hover="작업과정"><span>progress</span></a>
                     </div>
                     <div class="Website">
                       <a href="#" data-hover="바로가기"><span>Website</span></a>
@@ -639,22 +640,15 @@
                 <div class="mockup"></div>
                 <!-- //mockup -->
                 <div class="item_box">
-                  <h3>Teket</h3>
-                  <span>Teket 홈페이지 리뉴얼</span>
+                  <h3>Ready...</h3>
+                  <span>준비중...</span>
                   <p>
-                    자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
-                  </p>
-                  <p>
-                    작은 쇼핑몰에서 부산을 대표하는 큰 쇼핑몰로 성장하는
-                    과정에서 힘들지만
-                  </p>
-                  <p>
-                    팀원들과 함께 노력하고 열정을 쏟았던 순간이 가장 기억에 남고
-                    행복했습니다
+                    새로운 프로젝트를 준비하고 있어요.
                   </p>
                   <div>
                     <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
+                    <p><em>Tool</em> : HTML CSS JS </p>
                   </div>
                   <div class="button">
                     <div class="progress">
