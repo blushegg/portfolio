@@ -15,12 +15,12 @@
     <!-- lenis -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
     <!-- fontawesome -->
-    <script
-      src="https://kit.fontawesome.com/c11882ed90.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <script>
+    <script src="https://kit.fontawesome.com/c11882ed90.js"crossorigin="anonymous"></script>
+    <!-- fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
+    <script>  
       window.onload = () => {
         document.querySelectorAll(".split").forEach((text) => {
           let theText = text.innerText;
@@ -62,24 +62,25 @@
         });
 
         //아이콘 설명
-        const showNav = gsap
-          .from(".header_info", {
-            yPercent: -200,
-            paused: true,
-            duration: 0.2,
-          })
-          .progress(1);
+        // const showNav = gsap
+        //   .from(".header_info", {
+        //     yPercent: -200,
+        //     paused: true,
+        //     duration: 0.2,
+        //   })
+        //   .progress(1);
 
-        ScrollTrigger.create({
-          start: "top top",
-          end: 99999,
-          onUpdate: (self) => {
-            self.direction === -1 ? showNav.play() : showNav.reverse();
-          },
-        });
+        // ScrollTrigger.create({
+        //   start: "top top",
+        //   end: 99999,
+        //   onUpdate: (self) => {
+        //     self.direction === -1 ? showNav.play() : showNav.reverse();
+        //   },
+        // });
 
-        const lenis = new Lenis();
         //스무스 효과
+        const lenis = new Lenis();
+
         lenis.on("scroll", (e) => {
           console.log(e);
         });
@@ -90,7 +91,6 @@
         }
 
         requestAnimationFrame(raf);
-
         //가로 스크롤
         gsap.registerPlugin(ScrollTrigger);
         let sections = gsap.utils.toArray(".design_item");
@@ -144,13 +144,7 @@
                 }
               );
           });
-          //로딩화면 페이드아웃
-          setTimeout(removeLoader, 3000);
-        });
-        function removeLoader() {
-          $("#loading").slideUp(800);
-          $(".count").fadeOut(800);
-        }
+
         //마우스 커서
         const circle = document.querySelector('.cursor_circle');
         console.log(circle)
@@ -164,12 +158,24 @@
         });
 
         $('.mockup figure').mouseover(function(){
-          $('.cursor_circle ').stop().show(200);
+          $('.cursor_circle ').stop().show();
         });
         $('.mockup figure').mouseout(function(){
-          $('.cursor_circle ').stop().hide(200);
+          $('.cursor_circle ').stop().hide();
         });
 
+        //로딩화면 페이드아웃
+        setTimeout(removeLoader, 3000);
+        });
+        function removeLoader() {
+          $("#loading").slideUp(800);
+          $(".count").fadeOut(800);
+        }
+
+        //팬시박스
+        Fancybox.bind('[data-fancybox="gallery"]', {
+                  //
+                });  
       };
     </script>
   </head>
@@ -196,7 +202,7 @@
       <header id="header" role="header">
         <div class="header_inner inner">
           <h1 class="header_logo">
-            <a href="#intro" data-hover="서아란"><span>서아란</span></a>
+            <a href="#intro" data-hover="서아란"><span>ahran</span></a>
           </h1>
           <nav class="nav_pc" role="navigation" aria-label="메뉴_PC">
             <ul>
@@ -226,53 +232,6 @@
           <!-- //nav_mobile-->
         </div>
         <!-- //header_inner -->
-
-        <div class="header_info">
-          <div class="header_text">
-            <p>"볼 수 있는 만큼 그릴 수 있다"</p>
-            <p>디자이너 + 개발자 서아란 입니다.</p>
-            <p>우리가 살아가는 현실에서</p>
-            <p>디자인과 개발의 역할은 무엇인지 생각합니다.</p>
-            <p>디자인에 기반을 둔 다채롭고 효과적인</p>
-            <p>개발 방법을 탐구합니다.</p>
-          </div>
-          <!-- //header_text -->
-
-          <div class="call_box">
-            <div class="call">
-              <p>email.</p>
-              <p>tel.</p>
-            </div>
-            <!-- //call -->
-
-            <div class="number">
-              <p>blushegg95@gmail.com</p>
-              <p>010.7747.0294</p>
-            </div>
-            <!-- //naumber -->
-          </div>
-          <!-- //call_box -->
-
-          <div class="link_box">
-            <div class="git">
-              <a
-                href="https://github.com/blushegg"
-                target="_blank"
-                data-hover="깃허브"
-                ><span>Github</span></a
-              >
-            </div>
-            <!-- //git -->
-            <div class="resume">
-              <a href="#" target="_blank" data-hover="이력서"
-                ><span>Resume</span></a
-              >
-            </div>
-            <!-- //resume -->
-          </div>
-          <!-- //link_box -->
-        </div>
-        <!-- //header_info -->
       </header>
       <!-- //header -->
 
@@ -356,7 +315,7 @@
               <!-- //left -->
 
               <div class="center">
-                <h2 class="center_text split">서아란.</h2>
+                <h2 class="center_text split">서아란</h2>
                 <h2 class="center_text split">포트폴리오</h2>
                 <figure class="large_img">
                   <img src="img/bg_potfolio.jpg" alt="포트폴리오배경" />
@@ -397,8 +356,54 @@
             <div class="skill_cont">
               <div class="about">
                 <h3>서아란</h3>
-                <p>1995년생 부산</p>
+                <div class="header_info">
+                  <div class="header_text">
+                    <p>"볼 수 있는 만큼 그릴 수 있다"</p>
+                    <p>디자이너 + 개발자 서아란 입니다.</p>
+                    <p>우리가 살아가는 현실에서</p>
+                    <p>디자인과 개발의 역할은 무엇인지 생각합니다.</p>
+                    <p>디자인에 기반을 둔 다채롭고 효과적인</p>
+                    <p>개발 방법을 탐구합니다.</p>
+                  </div>
+                  <!-- //header_text -->
+        
+                  <div class="call_box">
+                    <div class="call">
+                      <p>email.</p>
+                      <p>tel.</p>
+                    </div>
+                    <!-- //call -->
+        
+                    <div class="number">
+                      <p>blushegg95@gmail.com</p>
+                      <p>010.7747.0294</p>
+                    </div>
+                    <!-- //naumber -->
+                  </div>
+                  <!-- //call_box -->
+        
+                  <div class="link_box">
+                    <div class="git">
+                      <a
+                        href="https://github.com/blushegg"
+                        target="_blank"
+                        data-hover="깃허브"
+                        ><span>Github</span></a
+                      >
+                    </div>
+                    <!-- //git -->
+                    <div class="resume">
+                      <a href="#" target="_blank" data-hover="이력서"
+                        ><span>Resume</span></a
+                      >
+                    </div>
+                    <!-- //resume -->
+                  </div>
+                  <!-- //link_box -->
+                </div>
+                <!-- //header_info -->
                 <div class="about_skill">
+                  <h3>자격증</h3>
                   <p>웹디자인 기능사</p>
                   <p>GTQ 일러스트 1급</p>
                   <p>GTQ 포토샵 1급</p>
@@ -549,7 +554,7 @@
                 <div class="mockup">
                   <figure>
                     <a href="https://blushegg.github.io/Teket/" a target="_blank">
-                      <img src="img/teket_pc.png" alt="">
+                      <img src="img/teket_pc.png" alt="테켓 목업 이미지">
                     </a>
                   </figure>
                 </div>
@@ -561,7 +566,7 @@
                     아메리칸 무드를 나타낼 수 있는 빈티지하고 레트로한 콘셉트로 디자인.
                   </p>
                   <div>
-                    <p><em>Developer</em> = 100%</p>
+                    <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
                     <p><em>Tool</em> : HTML CSS JS </p>
                   </div>
@@ -581,54 +586,65 @@
               </article>
               <!-- //developer_item -->
               <article class="developer_item s2">
-                <div class="mockup"></div>
+                <div class="mockup">
+                  <figure>
+                    <a href="https://blushegg.github.io/Bighit/" a target="_blank">
+                      <img src="img/bithit_pc.png" alt="빅히트 목업 이미지">
+                    </a>
+                  </figure>
+                </div>
                 <!-- //mockup -->
                 <div class="item_box">
-                  <h3>Teket</h3>
-                  <span>Teket 홈페이지 리뉴얼</span>
+                  <h3>Bighit</h3>
+                  <span>Bighit 홈페이지 리뉴얼</span>
                   <p>
-                    자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
+                    함축적이면서 강렬함을 전달하기 위한 흑백의 컬러와 절제된 형태의 디자인.
                   </p>
                   <div>
                     <p><em>Design</em> = 100%</p>
                     <p><em>Developer</em> = 100%</p>
-                    <p><em>Tool</em> : HTML CSS JS </p>
+                    <p><em>Tool</em> : HTML CSS</p>
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"
+                      <a href="pdf/Bighit_homepage.pdf" target="_blank" data-hover="작업과정"
                         ><span>progress</span></a
                       >
                     </div>
                     <div class="Website">
-                      <a href="#" data-hover="바로가기"><span>Website</span></a>
+                      <a href="https://blushegg.github.io/Bighit/" target="_blank" data-hover="바로가기"><span>Website</span></a>
                     </div>
                   </div>
                   <!-- button -->
-                </div>
-                <!-- //item_box -->
+
               </article>
               <!-- //developer_item -->
               <article class="developer_item s3">
-                <div class="mockup"></div>
+                <div class="mockup">
+                  <figure>
+                    <a href="https://blushegg.github.io/Hidalap/" a target="_blank">
+                      <img src="img/hidalap_pc.png" alt="히다랩 목업 이미지">
+                    </a>
+                  </figure>
+                </div>
                 <!-- //mockup -->
                 <div class="item_box">
-                  <h3>Teket</h3>
-                  <span>Teket 홈페이지 리뉴얼</span>
+                  <h3>Hidalap</h3>
+                  <span>Hidalap 홈페이지 모작</span>
                   <p>
-                    자연스럽게 작은 쇼핑몰 디자인팀에서 근무하게 되었습니다.
+                    Hidalap 메인 홈페이지를 모작 해보았습니다.
                   </p>
                   <div>
-                    <p><em>Design</em> = 100%</p>
+                    <p><em>Design</em> = 0%</p>
                     <p><em>Developer</em> = 100%</p>
-                    <p><em>Tool</em> : HTML CSS JS </p>
+                    <p><em>Tool</em> : HTML CSS </p>
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"><span>progress</span></a>
+                      <a href="#" target="_blank" data-hover="작업과정"><span>progress</span></a>
                     </div>
                     <div class="Website">
-                      <a href="#" data-hover="바로가기"><span>Website</span></a>
+                      <a href="https://blushegg.github.io/Hidalap/" target="_blank" data-hover="바로가기"><span>Website</span></a>
                     </div>
                   </div>
                   <!-- button -->
@@ -637,7 +653,13 @@
               </article>
               <!-- //developer_item -->
               <article class="developer_item s4">
-                <div class="mockup"></div>
+                  <div class="mockup">
+                    <figure>
+                      <a href="#" a target="_blank">
+                        <img src="img/ready.png" alt="준비중 이미지">
+                      </a>
+                    </figure>
+                </div>
                 <!-- //mockup -->
                 <div class="item_box">
                   <h3>Ready...</h3>
@@ -652,12 +674,11 @@
                   </div>
                   <div class="button">
                     <div class="progress">
-                      <a href="#" data-hover="작업과정"
-                        ><span>progress</span></a
-                      >
+                      <a href="#" target="_blank" data-hover="작업과정"><span>progress</span></a
+>
                     </div>
                     <div class="Website">
-                      <a href="#" data-hover="바로가기"><span>Website</span></a>
+                      <a href="#" target="_blank" data-hover="바로가기"><span>Website</span></a>
                     </div>
                   </div>
                   <!-- button -->
@@ -676,13 +697,13 @@
             <div class="design_wrap">
               <article class="design_item d1">
                 <div class="design_title">
-                  <a href="#">흘러가는이미지</a>
+                  <a href="#">tamburins</a>
                   <p>100%</p>
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/tamburins.jpg" data-fancybox="gallery" >
+                    <img src="img/tamburins_ps.jpg" alt="템버린즈 상세페이지 디자인" />
                   </a>
                 </figure>
                 <!-- //design_box -->
@@ -690,13 +711,13 @@
               <!-- //design_item -->
               <article class="design_item d2">
                 <div class="design_title">
-                  <a href="#">흘러가는이미지</a>
+                  <a href="#" data-fancybox >Gomtang</a>
                   <p>100%</p>
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/Gomtang.gif" data-fancybox="gallery">
+                    <img src="img/Gomtang.jpg" alt="곰탱 이미지 모작" />
                   </a>
                 </figure>
                 <!-- //design_box -->
@@ -704,13 +725,13 @@
               <!-- //design_item -->
               <article class="design_item d3">
                 <div class="design_title">
-                  <a href="#">흘러가는이미지</a>
+                  <a href="#">Ready</a>
                   <p>100%</p>
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/ready_ps.png">
+                    <img src="img/ready_ps.png" alt="이미지 준비중" />
                   </a>
                 </figure>
                 <!-- //design_box -->
@@ -718,13 +739,13 @@
               <!-- //design_item -->
               <article class="design_item d4">
                 <div class="design_title">
-                  <a href="#">흘러가는이미지</a>
+                  <a href="#">Ready</a>
                   <p>100%</p>
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/ready_ps.png">
+                    <img src="img/ready_ps.png" alt="이미지 준비중" />
                   </a>
                 </figure>
                 <!-- //design_box -->
@@ -732,13 +753,13 @@
               <!-- //design_item -->
               <article class="design_item d5">
                 <div class="design_title">
-                  <a href="#">흘러가는이미지</a>
+                  <a href="#">Ready</a>
                   <p>100%</p>
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/ready_ps.png">
+                    <img src="img/ready_ps.png" alt="이미지 준비중" />
                   </a>
                 </figure>
                 <!-- //design_box -->
@@ -751,8 +772,8 @@
                 </div>
                 <!-- //design_title -->
                 <figure class="design_box">
-                  <a href="#">
-                    <img src="img/bg_circle.png" alt="어쩌고저쩌고" />
+                  <a href="img/ready_ps.png">
+                    <img src="img/ready_ps.png" alt="이미지 준비중" />
                   </a>
                 </figure>
                 <!-- //design_box -->
