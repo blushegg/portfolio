@@ -123,7 +123,7 @@ p, a, h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 0;
     left: 0;
-    display: none;
+    /* display: none; */
 }
 
 #loading span {
@@ -168,8 +168,8 @@ progress::-moz-progress-bar {
     height: 100px;
     border-radius: 50%;
     z-index: 9999;
-    /* display: none; */
     background-color: var(--color-ltgy);
+    display: none;
 }
 
 .cursor_circle p {
@@ -227,8 +227,8 @@ progress::-moz-progress-bar {
 
 .nav_pc > ul > li {
     font-size: var(--fontsize-20);
-    text-align: right;
-    padding-bottom: 15px;
+    text-align:right;
+    padding-bottom: 10px;
 }
 
 .nav_pc > ul > li > a {
@@ -245,7 +245,7 @@ progress::-moz-progress-bar {
 .nav_pc a::after {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     content: attr(data-hover);
     transition: top 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     font-weight: bold;
@@ -262,14 +262,6 @@ progress::-moz-progress-bar {
     display: none;
 }
 
-.header_info {
-    font-size: var(--fontsize-14);
-    padding-left: 30px;
-    position: absolute;
-    top: 80px;
-    left: 0;
-}
-
 .call_box {
     display: flex;
     margin-top: 15px;
@@ -283,10 +275,11 @@ progress::-moz-progress-bar {
     font-weight: bold;
 }
 
+
 .link_box { 
+    font-size: var(--fontsize-14);
     margin-top: 15px;
     display: flex;
-    flex-direction: column;
     gap: 5px;
 }
 
@@ -337,9 +330,8 @@ progress::-moz-progress-bar {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50% , 0);
+    top: 100px;
+    left: 10%;
 }
 
 #intro .intro_inner .small_text {
@@ -394,20 +386,23 @@ progress::-moz-progress-bar {
 }
 
 #intro .intro_inner .center h2 {
-    font-size: 20rem;
-    line-height: 1.1;
+    font-size: 22rem;
+    line-height: 1;
     white-space: nowrap;
     z-index: 1;
 }
 
 #intro .intro_inner .center .large_img {
     position: absolute;
-    top: 28%;
-    left: 11%;
+    top: 25%;
+    left: 12%;
     opacity: 0;
     transition: all 0.3s;
 }
 
+#intro .intro_inner .center .large_img img {
+    width: 106%;
+}
 #intro .intro_inner .center:hover .large_img {
     opacity: 1;
     transition: all 0.3s;
@@ -487,7 +482,7 @@ progress::-moz-progress-bar {
 
 .skill_cont {
     width: 60%;
-    margin-bottom: 120px;
+    margin-bottom: 180px;
 }
 
 .about {
@@ -499,11 +494,14 @@ progress::-moz-progress-bar {
 }
 
 .skill_cont .about_skill {
-    margin: 40px 0;
+    margin-top: 180px;
 }
 
 .icon_design {
     margin-top: 10px;
+}
+.icon_developer {
+    margin-top: 20px;
 }
 
 .icon_developer ul {display: flex;}
@@ -537,7 +535,8 @@ progress::-moz-progress-bar {
 }
 
 .developer_wrap {
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 200px;
 }
 .developer_item {
     height: 600px;
@@ -607,6 +606,10 @@ progress::-moz-progress-bar {
     margin: 40px 0;
 }
 
+.item_box > div p {
+    margin-bottom: 3px;
+}
+
 .item_box > div em {
     font-style: normal;
     font-weight: bold;
@@ -647,14 +650,14 @@ progress::-moz-progress-bar {
     background-color: var(--color-bk);
     color: var(--color-wh);
     transition: all 0.3s;
-    transform: scale(1.05);
+    transform: translateY(5px);
 }
 
 .item_box .button .Website:hover a {
     background-color: var(--color-bk);
     color: var(--color-wh);
     transition: all 0.3s;
-    transform: scale(1.05);
+    transform: translateY(5px);
 }
 
 /* design */
@@ -663,21 +666,20 @@ progress::-moz-progress-bar {
 }
 
 .design_wrap {
-    width: 500%;
+    width: 200%;
     display: flex;
     flex-wrap: nowrap;
     gap: 15px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .design_item {
     width: 475px;
-    height: 660px;
-    background-color: #fff;
 }
 
 .design_title {
     padding: 20px;
+    background-color: var(--color-wh);
 }
 
 .design_title a {font-weight: bold;}
@@ -688,13 +690,20 @@ progress::-moz-progress-bar {
 
 .design_box {
     width: 100%;
-    height: 100%;
+    overflow: hidden;
+    transition: all 0.3s;
 }
 
 .design_box img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.design_box img:hover{
+    opacity: 1;
+    transition: all 0.3s;
 }
 
 /* contact */
