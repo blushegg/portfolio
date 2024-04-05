@@ -245,7 +245,7 @@ progress::-moz-progress-bar {
 .nav_pc a::after {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     content: attr(data-hover);
     transition: top 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     font-weight: bold;
